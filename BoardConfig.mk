@@ -18,46 +18,51 @@
 # by BoardConfigVendor.mk
 
 -include device/samsung/smdk4412-common/BoardCommonConfig.mk
+-include device/samsung/smdk4412-qcom-common/BoardCommonConfig.mk
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-BOARD_MODEM_TYPE := xmm6262
-TARGET_SPECIFIC_HEADER_PATH := device/samsung/i9300/include
+LOCAL_PATH := device/samsung/i9305
 
 # Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/i9300/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+
+# RIL
+COMMON_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND='{ "ril.ks.status", AID_SYSTEM, 0 },'
+
+# Camera
+COMMON_GLOBAL_CFLAGS += -DCAMERA_WITH_CITYID_PARAM
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412
-TARGET_KERNEL_CONFIG := slim_i9300_defconfig
-TARGET_KERNEL_CUSTOM_TOOLCHAIN := linaro-4.7-13.04/bin/arm-linux-gnueabihf-
+TARGET_KERNEL_CONFIG := custom_i9305_defconfig
 
 # Recovery
-TARGET_RECOVERY_FSTAB := device/samsung/i9300/rootdir/fstab.smdk4x12
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/fstab.smdk4x12
 RECOVERY_FSTAB_VERSION := 2
+
+# assert
+TARGET_OTA_ASSERT_DEVICE := m3,m3xx,i9305,GT-I9305
+
+# inherit from the proprietary version
+-include vendor/samsung/i9305/BoardConfigVendor.mk
 
 # Selinux
 BOARD_SEPOLICY_DIRS := \
-    device/samsung/i9300/selinux
+    $(LOCAL_PATH)/selinux
 
 BOARD_SEPOLICY_UNION := \
+    file_contexts \
+    te_macros \
     device.te \
+    dhcp.te \
     domain.te \
     file.te \
-    file_contexts \
     init.te \
+    kickstart.te \
     mediaserver.te \
+    netmgrd.te \
+    qmux.te \
     rild.te \
+    secril.te \
     system.te \
     ueventd.te \
     wpa_supplicant.te
-
-# assert
-TARGET_OTA_ASSERT_DEVICE := m0,i9300,GT-I9300
-
-COMMON_GLOBAL_CFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-
-TARGET_PROVIDES_CAMERA_HAL := true
-
-# inherit from the proprietary version
--include vendor/samsung/i9300/BoardConfigVendor.mk
