@@ -37,6 +37,16 @@ PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := Samsung
 PRODUCT_MODEL := GT-I9305
 
+# SaberMod
+TARGET_GCC_VERSION_EXP := 4.9
+TARGET_USE_O3 := true
+STRICT_ALIASING := true
+SUPPRES_UNUSED_WARNING := true
+OPT_MEMORY := true
+BOOT_ZIP_OUT_FILE := SlimKernel-$(TARGET_DEVICE)-$(PLATFORM_VERSION)-$(shell date +"%Y%m%d%H%M%S")
+RECOVERY_ZIP_OUT_FILE := SlimRecovery-$(TARGET_DEVICE)-$(shell date +"%Y%m%d%H%M%S")
+BOARD_USE_BGRA_8888 := true
+
 # Set build fingerprint / ID / Product Name ect.
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=m3xx TARGET_DEVICE=m3 BUILD_FINGERPRINT="samsung/m3xx/m3:4.1.2/JZO54K/I9305XXBMA6:user/release-keys" PRIVATE_BUILD_DESC="m3xx-user 4.1.2 JZO54K I9305XXBMA6 release-keys"
 

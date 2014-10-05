@@ -66,3 +66,9 @@ BOARD_SEPOLICY_UNION := \
     system.te \
     ueventd.te \
     wpa_supplicant.te
+
+# TWRP
+DEVICE_RESOLUTION := 720x1280
+
+# Compatibility with pre-kitkat Sensor HALs
+SENSORS_NEED_SETRATE_ON_ENABLE := true
