@@ -83,6 +83,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0 \
     ro.telephony.ril.v3=newDriverCall,newDialCode
 
+# libart.so Runtime as default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.dalvik.vm.lib=libart.so \
+    dalvik.vm.dexopt-data-only=1
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \

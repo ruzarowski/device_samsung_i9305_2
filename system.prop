@@ -22,3 +22,7 @@ persist.radio.apm_sim_not_pwdn=1
 # System property for number of mQANElements
 ro.ril.telephony.mqanelements=6
 ro.telephony.ril.v3=signalstrength
+
+# libart.so Runtime by default
+persist.sys.dalvik.vm.lib=libart.so
+dalvik.vm.dexopt-data-only=1
