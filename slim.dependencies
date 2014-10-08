@@ -25,7 +25,7 @@
   },
   {
     "remote":       "github_main",
-    "repository":   "ruzarowski/proprietary_vendor_samsung",
+    "repository":   "AOSB/proprietary_vendor_samsung",
     "target_path":  "vendor/samsung",
     "branch":       "kitkat"
   }
